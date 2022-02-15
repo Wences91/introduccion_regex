@@ -6,5 +6,9 @@ bookdown::gitbook:
         <li><a href="./">Introducción a las expresiones regulares</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/Wences91/introduccion_regex/edit/%s
-    download: ["pdf", "epub"]
+    edit: https://github.com/Wences91/introduccion_regex/edit/master/%s
+    download: ['rmd']
+    sharing:
+      github: yes
+      facebook: yes
+      twitter: yes
