@@ -1,0 +1,29 @@
+--- 
+title: 'Introducción a las expresiones regulares'
+author: 'Wenceslao Arroyo-Machado [\@Wences91](https://twitter.com/Wences91)'
+date: '15/02/2022'
+knit: 'bookdown::render_book'
+documentclass: book
+site: bookdown::bookdown_site
+bibliography: references.bib
+biblio-style: 'apalike'
+description: |
+  .
+link-citations: yes
+github-repo: Wences91/introduccion_regex
+---
+
+
+# Presentación {-}
+
+```{r, echo=FALSE}
+knitr::include_graphics('images/cover.jpg')
+```
+
+Este libro ha sido preparado para el curso **Introducción a las expresiones regulares** de la iniciativa [#yosigopublicando](https://yosigopublicando.ugr.es/).
+
+El código está disponible en [GitHub](https://github.com/Wences91/introduccion_regex).
+
+
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Este trabajo cuenta con una licencia <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Atribución 4.0 Internacional</a>.
