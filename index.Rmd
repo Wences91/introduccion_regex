@@ -15,6 +15,9 @@ url: 'https\://Wences91.github.io/introduccion_regex/'
 cover-image: general_images/casa_logo.png
 ---
 
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
 
 # Presentación {-}
 
@@ -28,4 +31,4 @@ El código está disponible en [GitHub](https://github.com/Wences91/introduccion
 
 
 
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Este trabajo cuenta con una licencia <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Atribución 4.0 Internacional</a>.
+Este trabajo cuenta con una licencia <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Atribución 4.0 Internacional</a>.

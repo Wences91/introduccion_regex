@@ -5,7 +5,8 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Introducción a las expresiones regulares</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+        <center><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Elaborado con bookdown</a> en <i class="fa fa-r-project"></i></li></center>
     view: https://github.com/Wences91/introduccion_regex/blob/main/%s
     edit: https://github.com/Wences91/introduccion_regex/edit/main/%s
     download: ['rmd']
