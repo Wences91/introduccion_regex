@@ -11,7 +11,8 @@ biblio-style: 'apalike'
 description: |
   .
 link-citations: yes
-github-repo: Wences91/introduccion_regex
+url: 'https\://Wences91.github.io/introduccion_regex/'
+cover-image: general_images/casa_logo.png
 ---
 
 
