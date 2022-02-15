@@ -1,0 +1,12 @@
+# Introducción
+
+## ¿Qué son las expresiones regulares?
+
+Una **exprexión regular** es una secuencia de caracteres que conforma un **patrón de búsqueda** cuya principal funcionalidad se encuentra en las operaciones de búsqueda y sustitución [@noauthor_expresion_2021].
+
+Estas son de gran utilidad ya que pueden usarse en mútitud de herramientas, desde las hojas de cálculo de Google Drive (Figura \@ref(fig:drive-regex)) a editores de código o en programación.
+
+```{r, drive-regex, echo=FALSE, fig.align = 'center', out.width = '50%', fig.cap = 'Búsqueda de expresiones regulares en las hojas de cálculo de Google Drive'}
+knitr::include_graphics('images/drive_regex.jpg', dpi = NA)
+```
+
