@@ -4,6 +4,7 @@ author: 'Wenceslao Arroyo-Machado [\@Wences91](https://twitter.com/Wences91)'
 date: '15/02/2022'
 knit: 'bookdown::render_book'
 documentclass: book
+output_dir: docs
 site: bookdown::bookdown_site
 bibliography: references.bib
 biblio-style: 'apalike'
