@@ -1,13 +1,5 @@
-Welcome! 
+# Introducción a las expresiones regulares
 
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). 
+Libro del curso *Introducción a las expresiones regulares* de la iniciativa [#yosigopublicando](https://yosigopublicando.ugr.es/).
 
-This template provides a skeleton file structure that you can edit to create your book. 
-
-The contents inside the .Rmd files provide some pointers to help you get started, but feel free to also delete the content in each file and start fresh.
-
-Additional resources:
-
-The **bookdown** book: https://bookdown.org/yihui/bookdown/
-
-The **bookdown** package reference site: https://pkgs.rstudio.com/bookdown
+Puedes consultar el documento desde [GitHub Pages](https://wences91.github.io/introduccion_regex/)
