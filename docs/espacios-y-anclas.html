@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Introducción | Introducción a las expresiones regulares</title>
+  <title>4 Espacios y anclas | Introducción a las expresiones regulares</title>
   <meta name="description" content="." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Introducción | Introducción a las expresiones regulares" />
+  <meta property="og:title" content="4 Espacios y anclas | Introducción a las expresiones regulares" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://Wences91.github.io/introduccion_regex/" />
   <meta property="og:image" content="https://Wences91.github.io/introduccion_regex/general_images/casa_logo.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Introducción | Introducción a las expresiones regulares" />
+  <meta name="twitter:title" content="4 Espacios y anclas | Introducción a las expresiones regulares" />
   
   <meta name="twitter:description" content="." />
   <meta name="twitter:image" content="https://Wences91.github.io/introduccion_regex/general_images/casa_logo.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="elementos-básicos.html"/>
+<link rel="prev" href="cuantificadores.html"/>
+<link rel="next" href="referencias.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -120,11 +120,173 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introducción" class="section level1">
-<h1><span class="header-section-number">1</span> Introducción</h1>
-<div id="la-búsqueda-literal" class="section level2">
-<h2><span class="header-section-number">1.1</span> La búsqueda literal</h2>
-<p>Por defecto, al realizar una búsqueda sin expresiones regulares, los términos buscados son cotejados de forma literal. Por ejemplo, al buscar la palabra <code>google</code> localizamos todas las URLs que incluyen en alguna parte ese término, sin importar la posición, elementos que hay antes o después…</p>
+<div id="espacios-y-anclas" class="section level1">
+<h1><span class="header-section-number">4</span> Espacios y anclas</h1>
+<p>Los espacios, saltos de líneas y ubicación de las cadenas son otro de los elementos que pueden ser controlados y tenidos en cuenta a través de expresiones regulares.</p>
+<div id="s" class="section level2">
+<h2><span class="header-section-number">4.1</span> \s</h2>
+<p>Si bien los espacios pueden ser buscados mediante un espacio en blanco, este puede ser indicado con <code>\s</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">api.semantic scholar.org/corpusid:84315311</td>
+</tr>
+<tr class="even">
+<td align="center">city-data.com/ township/shamrock-holt-ne.html</td>
+</tr>
+<tr class="odd">
+<td align="center">nytimes.com/ 2006/02/24/sports/olympics/24skate.html</td>
+</tr>
+<tr class="even">
+<td align="center">d-nb.info/gnd/ 4300784-3</td>
+</tr>
+<tr class="odd">
+<td align="center">ncb         i.nlm.nih.gov</td>
+</tr>
+<tr class="even">
+<td align="center">id.loc. gov/authorities/names/n90609243</td>
+</tr>
+</tbody>
+</table>
+<p>Una operación común al respecto consiste en reemplazar los espacios en blanco consecutivos, para lo cual solo hay que buscar <code>/s+</code> y reemplazar las coincidencias con una cadena de texto vacía.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">api.semanticscholar.org/corpusid:84315311</td>
+</tr>
+<tr class="even">
+<td align="center">city-data.com/township/shamrock-holt-ne.html</td>
+</tr>
+<tr class="odd">
+<td align="center">nytimes.com/2006/02/24/sports/olympics/24skate.html</td>
+</tr>
+<tr class="even">
+<td align="center">d-nb.info/gnd/4300784-3</td>
+</tr>
+<tr class="odd">
+<td align="center">ncbi.nlm.nih.gov</td>
+</tr>
+<tr class="even">
+<td align="center">id.loc.gov/authorities/names/n90609243</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="t" class="section level2">
+<h2><span class="header-section-number">4.2</span> \t</h2>
+<p>Las tabulaciones pueden ser facilmente identificadas con expresiones regulares usando <code>\t</code>. A veces estas tabulaciones pueden ser confundidas con espacios en blanco.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">city-data.com/ township/shamrock-holt-ne.html</td>
+</tr>
+</tbody>
+</table>
+<p>En algunas ocasiones los datos pueden incluir por error tabulaciones que de misma manera que con los espacios pueden corregirse con <code>\t+</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">city-data.com/township/shamrock-holt-ne.html</td>
+</tr>
+</tbody>
+</table>
+<p>De forma inversa, se pueden insertar tabulaciones a modo de reemplazo, sustituyendo un caracter o conjunto de caracteres por ello. Por ejemplo, se pueden reemplazar las barras invertidas por tabulaciones buscando <code>/</code> y reemplazando por <code>\t</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">bbc.com sport 0 football 29047046</td>
+</tr>
+<tr class="even">
+<td align="center">star-ch.jp channel detail.php?movie_id=28489</td>
+</tr>
+<tr class="odd">
+<td align="center">govtrack.us congress votes 92-1972 s908</td>
+</tr>
+<tr class="even">
+<td align="center">tyndalesploughboy.org category reformers</td>
+</tr>
+<tr class="odd">
+<td align="center">portal.historicenvironment.scot designation lb46182</td>
+</tr>
+<tr class="even">
+<td align="center">dutchcharts.nl showitem.asp?cat=a&amp;interpret=fugees&amp;titel=the+score</td>
+</tr>
+</tbody>
+</table>
+<p>Pero <u>no olvides</u> que algunos ficheros pueden venir delimitados por estos caracteres, por lo que dichos cambios han de aplicarse con cuidado.</p>
+</div>
+<div id="n" class="section level2">
+<h2><span class="header-section-number">4.3</span> \n</h2>
+<p>Con los saltos de línea ocurre lo mismo que con los espacios y las tabulaciones. Son facilmente localizables usando <code>\n</code> y las aplicaciones y advertencias vistas en las tabulaciones son directamente trasladables aquí.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">api.semantic<br>scholar.org/corpusid:84315311</td>
+</tr>
+</tbody>
+</table>
+<p>Por un lado es facil solucionar problemas en los datos o mejorar su estructura, por ejemplo reemplazando saltos de líneas <code>\t</code> por espacios <code>\s</code> o cadenas de texto vacías.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">api.semanticsscholar.org/corpusid:84315311</td>
+</tr>
+</tbody>
+</table>
+<p>O bien dividir cadenas de texto en líneas, por ejemplo reemplazando las barras invertidas <code>\</code> por saltos de línea <code>\n</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">bbc.com<br>sport<br>0<br>football<br>29047046</td>
+</tr>
+</tbody>
+</table>
+<p>Nuevamente, ten cuidado al eliminar o crear líneas, sobre todo cuando apliques dichos cambios directamente sobre un fichero.</p>
+</div>
+<div id="y" class="section level2">
+<h2><span class="header-section-number">4.4</span> ^ y $</h2>
+<p>En relación con ello se encuentran las anclas, con las que se puede marcar el inicio y final de una línea, delimitando mejor las búsquedas y reemplazos. Algo que además puede ser de ayuda cuando se usa en combinación los saltos de línea.</p>
+<p>Con <code>^</code> se marca el inico de la línea. En este caso podemos usarlo por ejemplo para buscar todas aquellas URLs que comiencen por <code>book</code> con <code>^book</code>.</p>
 <table>
 <thead>
 <tr class="header">
@@ -145,14 +307,14 @@
 <td align="center">books.google.bg/books?id=e4pjaaaamaaj</td>
 </tr>
 <tr class="odd">
-<td align="center">jubileebooks.co.uk/jubilee/magazine/authors/deborah_ellis/profile.asp</td>
+<td align="center">books.google.com/?id=lpahrqaacaaj</td>
 </tr>
 <tr class="even">
-<td align="center">io9.com/the-book-of-strange-new-things-will-blow-you-away-1675147919</td>
+<td align="center">books.google.com/?id=aiqnaqaamaaj</td>
 </tr>
 </tbody>
 </table>
-<p>Aunque en muchas ocasiones los sistemas de búsqueda no distinguen entre mayúsculas y minúsculas (<em>case sensitive</em>), pudiendo indicarse que exista esta distinción, no se puede descuidarse este aspecto. Si fijamos que el sistema diferencie entre mayúsculas y minúsculas y en lugar de buscar <code>book</code> buscamos <code>BOOK</code> los resultados serán diferentes.</p>
+<p>Por su parte, <code>$</code> marca el final de la línea. Como ejemplo, podemos buscar todas las URLs que terminan en <code>.com</code> usando <code>\.com$</code> (recuerda que el punto es necesario escaparlo).</p>
 <table>
 <thead>
 <tr class="header">
@@ -161,106 +323,26 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">BOOKS.GOOGLE.COM</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="los-reemplazos" class="section level2">
-<h2><span class="header-section-number">1.2</span> Los reemplazos</h2>
-<p>Además de las busquedas, son posibles los reemplazos. Se trata de establecer un término de búsqueda y otro de reemplazo para que automaticamente la herramienta sustituya la primera cadena de texto por la segunda. Podemos así cambiar <code>BOOKS</code> por <code>books</code>.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">URL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">books.GOOGLE.COM</td>
-</tr>
-</tbody>
-</table>
-<p>Es también habitual dejar el campo de reemplazo vacío para que los términos buscados sean sustituidos por una cadena vacía, lo que equivale a eliminar el texto que coincida con la búsqueda. Sería así posible buscar <code>http://www.</code> y remplazarlo por una cadena de texto vacía para eliminar esa parte de la URL.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">URL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">bbc.com/sport/0/football/29047046</td>
+<td align="center">shadowfist.com</td>
 </tr>
 <tr class="even">
-<td align="center">star-ch.jp/channel/detail.php?movie_id=28489</td>
+<td align="center">gemacademyaz.com</td>
 </tr>
 <tr class="odd">
-<td align="center">govtrack.us/congress/votes/92-1972/s908</td>
+<td align="center">fontanaheraldnews.com</td>
 </tr>
 <tr class="even">
-<td align="center">tyndalesploughboy.org/category/reformers</td>
+<td align="center">hudsongroup.com</td>
 </tr>
 <tr class="odd">
-<td align="center">portal.historicenvironment.scot/designation/lb46182</td>
+<td align="center">72armycadets.com</td>
 </tr>
 <tr class="even">
-<td align="center">dutchcharts.nl/showitem.asp?cat=a&amp;interpret=fugees&amp;titel=the+score</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="qué-son-las-expresiones-regulares" class="section level2">
-<h2><span class="header-section-number">1.3</span> ¿Qué son las expresiones regulares?</h2>
-<p>Una <strong>exprexión regular</strong> (también conocida como <em>regex</em>) es una secuencia de caracteres que conforma un <strong>patrón de búsqueda</strong> cuya principal funcionalidad se encuentra en las operaciones de búsqueda y sustitución <span class="citation">(“Expresión Regular” <a href="#ref-noauthor_expresion_2021" role="doc-biblioref">2021</a>)</span>.</p>
-<p>Estas son de gran utilidad ya que pueden usarse en mútitud de herramientas, desde las hojas de cálculo de Google Drive (Figura <a href="introducción.html#fig:drive-regex">1.1</a>) a editores de código o en programación.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:drive-regex"></span>
-<img src="images/drive_regex.jpg" alt="Búsqueda de expresiones regulares en las hojas de cálculo de Google Drive" width="50%" />
-<p class="caption">
-Fig. 1.1: Búsqueda de expresiones regulares en las hojas de cálculo de Google Drive
-</p>
-</div>
-<p>Las expresiones regulares son de utilidad para:</p>
-<ul>
-<li>Tareas avanzadas de <strong>búsqueda</strong> y <strong>reemplazo</strong></li>
-<li><strong>Verificar</strong> la estructura de textos</li>
-<li><strong>Dividir</strong> o <strong>estructurar</strong> textos</li>
-</ul>
-<p>Como muestra de estas aplicaciones, podemos en el caso de las URLs llevar a cabo una limpieza de las mismas reduciendolas todas ellas al dominio. Para ello simplemente (<em>depués verás que, efectivamente, es sencillo</em>) solo hay que indicar que busque la expresión regular <code>/.*</code> y la remplace por una cadena de texto vacia.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">URL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">bbc.com</td>
-</tr>
-<tr class="even">
-<td align="center">star-ch.jp</td>
-</tr>
-<tr class="odd">
-<td align="center">govtrack.us</td>
-</tr>
-<tr class="even">
-<td align="center">tyndalesploughboy.org</td>
-</tr>
-<tr class="odd">
-<td align="center">portal.historicenvironment.scot</td>
-</tr>
-<tr class="even">
-<td align="center">dutchcharts.nl</td>
+<td align="center">thaiembassylima.com</td>
 </tr>
 </tbody>
 </table>
 
-</div>
-</div>
-<h3>Referencias</h3>
-<div id="refs" class="references">
-<div id="ref-noauthor_expresion_2021">
-<p>“Expresión Regular.” 2021. <em>Wikipedia, La Enciclopedia Libre</em>. <a href="https://es.wikipedia.org/w/index.php?title=Expresi%C3%B3n_regular&amp;oldid=139047843">https://es.wikipedia.org/w/index.php?title=Expresi%C3%B3n_regular&amp;oldid=139047843</a>.</p>
 </div>
 </div>
             </section>
@@ -268,8 +350,8 @@ Fig. 1.1: Búsqueda de expresiones regulares en las hojas de cálculo de Google 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="elementos-básicos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="cuantificadores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referencias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -300,7 +382,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Wences91/introduccion_regex/edit/main/01-intro.Rmd",
+"link": "https://github.com/Wences91/introduccion_regex/edit/main/04-espacios.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -308,10 +390,10 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/Wences91/introduccion_regex/blob/main/01-intro.Rmd",
+"link": "https://github.com/Wences91/introduccion_regex/blob/main/04-espacios.Rmd",
 "text": null
 },
-"download": ["https://github.com/Wences91/introduccion_regex/raw/main/01-intro.Rmd"],
+"download": ["https://github.com/Wences91/introduccion_regex/raw/main/04-espacios.Rmd"],
 "search": {
 "engine": "fuse",
 "options": null

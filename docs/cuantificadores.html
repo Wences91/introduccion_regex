@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Introducción a las expresiones regulares</title>
+  <title>3 Cuantificadores | Introducción a las expresiones regulares</title>
   <meta name="description" content="." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introducción a las expresiones regulares" />
+  <meta property="og:title" content="3 Cuantificadores | Introducción a las expresiones regulares" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://Wences91.github.io/introduccion_regex/" />
   <meta property="og:image" content="https://Wences91.github.io/introduccion_regex/general_images/casa_logo.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introducción a las expresiones regulares" />
+  <meta name="twitter:title" content="3 Cuantificadores | Introducción a las expresiones regulares" />
   
   <meta name="twitter:description" content="." />
   <meta name="twitter:image" content="https://Wences91.github.io/introduccion_regex/general_images/casa_logo.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introducción.html"/>
+<link rel="prev" href="elementos-básicos.html"/>
+<link rel="next" href="espacios-y-anclas.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -120,26 +120,172 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Introducción a las expresiones regulares</h1>
-<p class="author"><em>Wenceslao Arroyo-Machado <a href="https://twitter.com/Wences91">@Wences91</a></em></p>
-<p class="date"><em>15/02/2022</em></p>
+<div id="cuantificadores" class="section level1">
+<h1><span class="header-section-number">3</span> Cuantificadores</h1>
+<p>Un elemento fundamental en las expresiones regulares, en especial para las tareas de reemplazo, está en los cuantificadores. Estos permiten marcar la posibilidad de que un caracter o expresión aparezca una o más veces.</p>
+<div id="section-2" class="section level2">
+<h2><span class="header-section-number">3.1</span> {}</h2>
+<p>Los corchetes pueden usarse para establecer el rango de veces que un caracter o expresión puede venir dado. En primer lugar se fija y el mínimo y tras ello, separado por una coma, el máximo. Si por ejemplo tenemo la palabra <code>book</code> queremos recuperar además el plural <code>books</code> es posible hacerlo indicando que la <code>s</code> puede no estar o estar solo una vez de esta forma <code>book(s){0,1}</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">books.google.com/?id=jhkypjgchecc</td>
+</tr>
+<tr class="even">
+<td align="center">books.google.com/?id=zaoaaaaayaaj</td>
+</tr>
+<tr class="odd">
+<td align="center">books.google.com/?id=y1cndwaaqbaj</td>
+</tr>
+<tr class="even">
+<td align="center">books.google.bg/books?id=e4pjaaaamaaj</td>
+</tr>
+<tr class="odd">
+<td align="center">jubileebooks.co.uk/jubilee/magazine/authors/deborah_ellis/profile.asp</td>
+</tr>
+<tr class="even">
+<td align="center">io9.com/the-book-of-strange-new-things-will-blow-you-away-1675147919</td>
+</tr>
+</tbody>
+</table>
+<p>Los parentesis permiten establecer de manera más precisa que se trata de la <code>s</code>, pues aunque por defecto <code>books{0,1}</code> también devuelve el mismo resultado aquí, en otros casos podría llevar a resultados erróneos.</p>
 </div>
-<div id="presentación" class="section level1 unnumbered">
-<h1>Presentación</h1>
-<p><img src="images/cover.jpg" width="1250" /></p>
-<p>Este libro ha sido preparado para el curso <strong>Introducción a las expresiones regulares</strong> de la iniciativa <a href="https://yosigopublicando.ugr.es/">#yosigopublicando</a>. El objetivo del curso es ofrecer una introducción a las expresiones regulares, por lo que el contenido gira en torno a los aspectos básicos.</p>
-<p>El código está disponible en <a href="https://github.com/Wences91/introduccion_regex">GitHub</a>.</p>
-<p>Este trabajo cuenta con una licencia <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Atribución 4.0 Internacional</a>.</p>
+<div id="section-3" class="section level2">
+<h2><span class="header-section-number">3.2</span> ?</h2>
+<p>En relación con este ejemplo, una forma de indicar que un elemento puede estar presente una vez o ninguna es con <code>?</code>. De esta forma, la búsqueda anterior podría realizarse de manera simplificada con <code>book(s?)</code> o <code>books?</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">books.google.com/?id=jhkypjgchecc</td>
+</tr>
+<tr class="even">
+<td align="center">books.google.com/?id=zaoaaaaayaaj</td>
+</tr>
+<tr class="odd">
+<td align="center">books.google.com/?id=y1cndwaaqbaj</td>
+</tr>
+<tr class="even">
+<td align="center">books.google.bg/books?id=e4pjaaaamaaj</td>
+</tr>
+<tr class="odd">
+<td align="center">jubileebooks.co.uk/jubilee/magazine/authors/deborah_ellis/profile.asp</td>
+</tr>
+<tr class="even">
+<td align="center">io9.com/the-book-of-strange-new-things-will-blow-you-away-1675147919</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-4" class="section level2">
+<h2><span class="header-section-number">3.3</span> +</h2>
+<p>En el caso de que este caracter o expresión pueda aparecer como mínimo una vez o más se hace uso de <code>{1,}</code> o, de maera más simplificada, <code>+</code>. Gracias a ello podemos localizar y verificar cadenas de texto. Por ejemplo, podemos localizar en las URLs los números de control de la Library of Congress usando <code>lccn-\w+\d+</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">worldcat.org/identities/lccn-no2009195364</td>
+</tr>
+<tr class="even">
+<td align="center">worldcat.org/identities/lccn-n90609217</td>
+</tr>
+<tr class="odd">
+<td align="center">worldcat.org/identities/lccn-n92112063</td>
+</tr>
+<tr class="even">
+<td align="center">worldcat.org/identities/lccn-nr95045397</td>
+</tr>
+<tr class="odd">
+<td align="center">worldcat.org/identities/lccn-n2007035186</td>
+</tr>
+<tr class="even">
+<td align="center">worldcat.org/identities/lccn-n85044526</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-5" class="section level2">
+<h2><span class="header-section-number">3.4</span> *</h2>
+<p>El asterisco <code>*</code> funciona igual que <code>+</code>, pero va un paso más allá y en lugdar de exigir que como mínimo aparezca una vez puede no estar presente. Es el equivalente a <code>{0,}</code>.</p>
+<p>Su uso con el <code>.</code> son de gran utilidad en las expresiones regulares, pues permiten establecer la presencia de cualquier caracter o secuencia de caracteres. Su utilidad se encuentra sobre todo con los reemplazos. Por ejemplo, con el caso anterior, podemos eliminar toda la URL y reducirla al número de control. Para ello solo hay que buscar <code>.*lccn-</code> y reemplazar por <code>lccn-</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">lccn-no2009195364</td>
+</tr>
+<tr class="even">
+<td align="center">lccn-n90609217</td>
+</tr>
+<tr class="odd">
+<td align="center">lccn-n92112063</td>
+</tr>
+<tr class="even">
+<td align="center">lccn-nr95045397</td>
+</tr>
+<tr class="odd">
+<td align="center">lccn-n2007035186</td>
+</tr>
+<tr class="even">
+<td align="center">lccn-n85044526</td>
+</tr>
+</tbody>
+</table>
+<p>O incluso reducirla por completo al número reemplazando por una cadena de texto vacía.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">no2009195364</td>
+</tr>
+<tr class="even">
+<td align="center">n90609217</td>
+</tr>
+<tr class="odd">
+<td align="center">n92112063</td>
+</tr>
+<tr class="even">
+<td align="center">nr95045397</td>
+</tr>
+<tr class="odd">
+<td align="center">n2007035186</td>
+</tr>
+<tr class="even">
+<td align="center">n85044526</td>
+</tr>
+</tbody>
+</table>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introducción.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="elementos-básicos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="espacios-y-anclas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -170,7 +316,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Wences91/introduccion_regex/edit/main/index.Rmd",
+"link": "https://github.com/Wences91/introduccion_regex/edit/main/03-cuant.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -178,10 +324,10 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/Wences91/introduccion_regex/blob/main/index.Rmd",
+"link": "https://github.com/Wences91/introduccion_regex/blob/main/03-cuant.Rmd",
 "text": null
 },
-"download": ["https://github.com/Wences91/introduccion_regex/raw/main/index.Rmd"],
+"download": ["https://github.com/Wences91/introduccion_regex/raw/main/03-cuant.Rmd"],
 "search": {
 "engine": "fuse",
 "options": null

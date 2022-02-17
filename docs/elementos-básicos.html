@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Introducción | Introducción a las expresiones regulares</title>
+  <title>2 Elementos básicos | Introducción a las expresiones regulares</title>
   <meta name="description" content="." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Introducción | Introducción a las expresiones regulares" />
+  <meta property="og:title" content="2 Elementos básicos | Introducción a las expresiones regulares" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://Wences91.github.io/introduccion_regex/" />
   <meta property="og:image" content="https://Wences91.github.io/introduccion_regex/general_images/casa_logo.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Introducción | Introducción a las expresiones regulares" />
+  <meta name="twitter:title" content="2 Elementos básicos | Introducción a las expresiones regulares" />
   
   <meta name="twitter:description" content="." />
   <meta name="twitter:image" content="https://Wences91.github.io/introduccion_regex/general_images/casa_logo.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="elementos-básicos.html"/>
+<link rel="prev" href="introducción.html"/>
+<link rel="next" href="cuantificadores.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -120,11 +120,12 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introducción" class="section level1">
-<h1><span class="header-section-number">1</span> Introducción</h1>
-<div id="la-búsqueda-literal" class="section level2">
-<h2><span class="header-section-number">1.1</span> La búsqueda literal</h2>
-<p>Por defecto, al realizar una búsqueda sin expresiones regulares, los términos buscados son cotejados de forma literal. Por ejemplo, al buscar la palabra <code>google</code> localizamos todas las URLs que incluyen en alguna parte ese término, sin importar la posición, elementos que hay antes o después…</p>
+<div id="elementos-básicos" class="section level1">
+<h1><span class="header-section-number">2</span> Elementos básicos</h1>
+<p>Dentro de las expresiones regulares existen varios caracteres especiales que permiten por ejemplo indicar que lo que se busca es un caracter alfanumérico o una secuencia de números, entre otras posibilidades.</p>
+<div id="section" class="section level2">
+<h2><span class="header-section-number">2.1</span> .</h2>
+<p>El punto <code>.</code> es uno de los caracteres fundamentales de las expresiones regulares. Es representa la presencia de un caracter de cualquier tipo. No tiene que ser ni siquiera alfanumérico. De esta forma, al buscar <code>book.</code> se localizan tanto las URLs que incluyen <code>books</code>como <code>book/</code>.</p>
 <table>
 <thead>
 <tr class="header">
@@ -152,7 +153,147 @@
 </tr>
 </tbody>
 </table>
-<p>Aunque en muchas ocasiones los sistemas de búsqueda no distinguen entre mayúsculas y minúsculas (<em>case sensitive</em>), pudiendo indicarse que exista esta distinción, no se puede descuidarse este aspecto. Si fijamos que el sistema diferencie entre mayúsculas y minúsculas y en lugar de buscar <code>book</code> buscamos <code>BOOK</code> los resultados serán diferentes.</p>
+</div>
+<div id="section-1" class="section level2">
+<h2><span class="header-section-number">2.2</span> \</h2>
+<p>No obstante, en caso de querer buscar literalmente el punto se necesita “<em>escapar</em>”. Mediante el uso de la barra invertida <code>\</code> podemos establecer la búsqueda literal de un caracter que tiene alguna funcionalidad especial dentro de las expresiones regulares como el punto o los paréntesis. En el caso de querer buscar literalmente <code>book.</code> habría que usar <code>book\.</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">facebook.com/groups/111795415601449</td>
+</tr>
+<tr class="even">
+<td align="center">goldbook.iupac.org/s05962.html</td>
+</tr>
+<tr class="odd">
+<td align="center">nfl.com/liveupdate/gamecenter/28849/nyg_gamebook.pdf</td>
+</tr>
+<tr class="even">
+<td align="center">nytimes.com/2011/02/03/books/03book.html</td>
+</tr>
+<tr class="odd">
+<td align="center">greybook.cern.ch/greybook/experiment/detail?id=wa81</td>
+</tr>
+</tbody>
+</table>
+<p><u>No confundir</u> este uso de la barra invertida como método de escape con su uso para establecer clases de caracteres como las que se explican a continuación.</p>
+</div>
+<div id="d-y-d" class="section level2">
+<h2><span class="header-section-number">2.3</span> \d y \D</h2>
+<p>Mediante <code>\d</code> se establece la búsqueda de un dígito. De esta forma no necesitas indicar un número exacto, solo que un número ha de estar presente. Por ejemplo, sabiendo que en la URL de la web del New York Times aparece el año de publicación, podemos buscar noticias publicadas entre 2010 y 2019 buscando <code>www.nytimes.com/201\d</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Con <code>\D</code> el funcionamiento es justo el puesto, busca la no presencia de un digito. Esto no significa que busque solo letras. Usando el ejemplo anterior, podemos detectar si hay algún fallo en estar URLs buscando que detras de la URL base de la página exista algo que no sea un digito con <code>nytimes.com/\D</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">nytimes.com/ 2006/02/24/sports/olympics/24skate.html</td>
+</tr>
+<tr class="even">
+<td align="center">nytimes.com/slideshow/2010/09/15/garden/0916emerson-slideshow.html</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="w-y-w" class="section level2">
+<h2><span class="header-section-number">2.4</span> \w y \W</h2>
+<p>Es posible buscar caracteres alfanuméricos de igual manera que antes usando <code>\w</code>. Por ejemplo, ahora quiero obtener todas las URLs del New York Times que no vayan a la página principal usando <code>www.nytimes.com/\w</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Nuevamente, si lo ponemos en mayúscula con <code>\W</code> su uso es el opuesto y busca la presencia de algo que no se de tipo alfanumérico. En este caso quiero probar a buscar en las URLs la presencia del texto <code>viaf</code> seguido de algo que no sea un dígito o letra con <code>viaf\W</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">viaf.org/viaf/72689661</td>
+</tr>
+<tr class="even">
+<td align="center">worldcat.org/identities/viaf-260281158</td>
+</tr>
+<tr class="odd">
+<td align="center">viaf.org/viaf/8648888</td>
+</tr>
+<tr class="even">
+<td align="center">viaf.org/viaf/24934751</td>
+</tr>
+<tr class="odd">
+<td align="center">viaf.org/viaf/21209763</td>
+</tr>
+<tr class="even">
+<td align="center">viaf.org/viaf/128732352</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="rangos" class="section level2">
+<h2><span class="header-section-number">2.5</span> Rangos []</h2>
+<p>De manera más precisa se pueden especificar que rango de caracteres estamos buscando haciendo uso de los corchetes <code>[]</code>. Este representa un único elemento y en su interior se representan los diferente valores que puede tomar. Retomando el primer ejemplo del New York Times, es posible determinar ese rango de año de manera mucho más precisa, reduciéndolo a 2011 y 2012 con <code>www.nytimes.com/201[12]</code>. En este caso no busca <code>12</code> sino que busca la presencia del <code>1</code> o del <code>2</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Es posible todo tipo de combinaciones, incluyendo no solo caracteres alfanuméricos sino también de otro tipo. En el caso de la anterior búsqueda de viaf le podemos indicar que detrá de viaf aparezca <code>-</code> o <code>/</code> usando <code>viaf[/-]</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">viaf.org/viaf/72689661</td>
+</tr>
+<tr class="even">
+<td align="center">worldcat.org/identities/viaf-260281158</td>
+</tr>
+<tr class="odd">
+<td align="center">viaf.org/viaf/8648888</td>
+</tr>
+<tr class="even">
+<td align="center">viaf.org/viaf/24934751</td>
+</tr>
+<tr class="odd">
+<td align="center">viaf.org/viaf/21209763</td>
+</tr>
+<tr class="even">
+<td align="center">viaf.org/viaf/128732352</td>
+</tr>
+</tbody>
+</table>
+<p>Si quisieramos establecer con los rango la presencia de un valor númerico cualquiera no tenemos que escribir todos ellos, se puede emplear <code>[0-9]</code>, al igual que ocurre con los caracteres alfabéticos <code>[a-z]</code>. Aunque en este último caso la búsqueda quedaría limitada a todos aquellos que aparezcan en minúscula, para buscar en mayúscula se usaría <code>[A-Z]</code> y si queremos tener en cuenta ambos <code>[a-zA-Z]</code>. De esta forma, si quiseramos localizar las URLs que incluyen una mayúscula se puede emplear <code>[A-Z]</code>.</p>
 <table>
 <thead>
 <tr class="header">
@@ -165,102 +306,7 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div id="los-reemplazos" class="section level2">
-<h2><span class="header-section-number">1.2</span> Los reemplazos</h2>
-<p>Además de las busquedas, son posibles los reemplazos. Se trata de establecer un término de búsqueda y otro de reemplazo para que automaticamente la herramienta sustituya la primera cadena de texto por la segunda. Podemos así cambiar <code>BOOKS</code> por <code>books</code>.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">URL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">books.GOOGLE.COM</td>
-</tr>
-</tbody>
-</table>
-<p>Es también habitual dejar el campo de reemplazo vacío para que los términos buscados sean sustituidos por una cadena vacía, lo que equivale a eliminar el texto que coincida con la búsqueda. Sería así posible buscar <code>http://www.</code> y remplazarlo por una cadena de texto vacía para eliminar esa parte de la URL.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">URL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">bbc.com/sport/0/football/29047046</td>
-</tr>
-<tr class="even">
-<td align="center">star-ch.jp/channel/detail.php?movie_id=28489</td>
-</tr>
-<tr class="odd">
-<td align="center">govtrack.us/congress/votes/92-1972/s908</td>
-</tr>
-<tr class="even">
-<td align="center">tyndalesploughboy.org/category/reformers</td>
-</tr>
-<tr class="odd">
-<td align="center">portal.historicenvironment.scot/designation/lb46182</td>
-</tr>
-<tr class="even">
-<td align="center">dutchcharts.nl/showitem.asp?cat=a&amp;interpret=fugees&amp;titel=the+score</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="qué-son-las-expresiones-regulares" class="section level2">
-<h2><span class="header-section-number">1.3</span> ¿Qué son las expresiones regulares?</h2>
-<p>Una <strong>exprexión regular</strong> (también conocida como <em>regex</em>) es una secuencia de caracteres que conforma un <strong>patrón de búsqueda</strong> cuya principal funcionalidad se encuentra en las operaciones de búsqueda y sustitución <span class="citation">(“Expresión Regular” <a href="#ref-noauthor_expresion_2021" role="doc-biblioref">2021</a>)</span>.</p>
-<p>Estas son de gran utilidad ya que pueden usarse en mútitud de herramientas, desde las hojas de cálculo de Google Drive (Figura <a href="introducción.html#fig:drive-regex">1.1</a>) a editores de código o en programación.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:drive-regex"></span>
-<img src="images/drive_regex.jpg" alt="Búsqueda de expresiones regulares en las hojas de cálculo de Google Drive" width="50%" />
-<p class="caption">
-Fig. 1.1: Búsqueda de expresiones regulares en las hojas de cálculo de Google Drive
-</p>
-</div>
-<p>Las expresiones regulares son de utilidad para:</p>
-<ul>
-<li>Tareas avanzadas de <strong>búsqueda</strong> y <strong>reemplazo</strong></li>
-<li><strong>Verificar</strong> la estructura de textos</li>
-<li><strong>Dividir</strong> o <strong>estructurar</strong> textos</li>
-</ul>
-<p>Como muestra de estas aplicaciones, podemos en el caso de las URLs llevar a cabo una limpieza de las mismas reduciendolas todas ellas al dominio. Para ello simplemente (<em>depués verás que, efectivamente, es sencillo</em>) solo hay que indicar que busque la expresión regular <code>/.*</code> y la remplace por una cadena de texto vacia.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">URL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">bbc.com</td>
-</tr>
-<tr class="even">
-<td align="center">star-ch.jp</td>
-</tr>
-<tr class="odd">
-<td align="center">govtrack.us</td>
-</tr>
-<tr class="even">
-<td align="center">tyndalesploughboy.org</td>
-</tr>
-<tr class="odd">
-<td align="center">portal.historicenvironment.scot</td>
-</tr>
-<tr class="even">
-<td align="center">dutchcharts.nl</td>
-</tr>
-</tbody>
-</table>
 
-</div>
-</div>
-<h3>Referencias</h3>
-<div id="refs" class="references">
-<div id="ref-noauthor_expresion_2021">
-<p>“Expresión Regular.” 2021. <em>Wikipedia, La Enciclopedia Libre</em>. <a href="https://es.wikipedia.org/w/index.php?title=Expresi%C3%B3n_regular&amp;oldid=139047843">https://es.wikipedia.org/w/index.php?title=Expresi%C3%B3n_regular&amp;oldid=139047843</a>.</p>
 </div>
 </div>
             </section>
@@ -268,8 +314,8 @@ Fig. 1.1: Búsqueda de expresiones regulares en las hojas de cálculo de Google 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="elementos-básicos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introducción.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cuantificadores.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -300,7 +346,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Wences91/introduccion_regex/edit/main/01-intro.Rmd",
+"link": "https://github.com/Wences91/introduccion_regex/edit/main/02-base.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -308,10 +354,10 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/Wences91/introduccion_regex/blob/main/01-intro.Rmd",
+"link": "https://github.com/Wences91/introduccion_regex/blob/main/02-base.Rmd",
 "text": null
 },
-"download": ["https://github.com/Wences91/introduccion_regex/raw/main/01-intro.Rmd"],
+"download": ["https://github.com/Wences91/introduccion_regex/raw/main/02-base.Rmd"],
 "search": {
 "engine": "fuse",
 "options": null

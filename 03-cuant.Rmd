@@ -1,0 +1,53 @@
+# Cuantificadores
+```{r, include=FALSE}
+urls <- read.delim2('urls.tsv', stringsAsFactors = FALSE)
+urls <- urls[which(nchar(urls$url)<70), 'url']
+urls <- as.data.frame(urls, stringsAsFactors = FALSE)
+names(urls) <- 'URL'
+```
+
+Un elemento fundamental en las expresiones regulares, en especial para las tareas de reemplazo, está en los cuantificadores. Estos permiten marcar la posibilidad de que un caracter o expresión aparezca una o más veces.
+
+## \{\}
+
+Los corchetes pueden usarse para establecer el rango de veces que un caracter o expresión puede venir dado. En primer lugar se fija y el mínimo y tras ello, separado por una coma, el máximo. Si por ejemplo tenemo la palabra `book` queremos recuperar además el plural `books` es posible hacerlo indicando que la `s` puede no estar o estar solo una vez de esta forma `book(s){0,1}`.
+
+```{r, echo=FALSE}
+knitr::kable(head(urls[grepl('book(s){0,1}',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')
+```
+
+Los parentesis permiten establecer de manera más precisa que se trata de la `s`, pues aunque por defecto `books{0,1}` también devuelve el mismo resultado aquí, en otros casos podría llevar a resultados erróneos.
+
+## ?
+
+En relación con este ejemplo, una forma de indicar que un elemento puede estar presente una vez o ninguna es con `?`. De esta forma, la búsqueda anterior podría realizarse de manera simplificada con `book(s?)` o `books?`.
+
+```{r, echo=FALSE}
+knitr::kable(head(urls[grepl('book(s?)',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')
+```
+
+## +
+
+En el caso de que este caracter o expresión pueda aparecer como mínimo una vez o más se hace uso de `{1,}` o, de maera más simplificada, `+`. Gracias a ello podemos localizar y verificar cadenas de texto. Por ejemplo, podemos localizar en las URLs los números de control de la Library of Congress usando `lccn-\w+\d+`.
+
+```{r, echo=FALSE}
+knitr::kable(head(urls[grepl('lccn-\\w+\\d+',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')
+```
+
+
+## *
+
+El asterisco `*` funciona igual que `+`, pero va un paso más allá y en lugdar de exigir que como mínimo aparezca una vez puede no estar presente. Es el equivalente a `{0,}`.
+
+Su uso con el `.` son de gran utilidad en las expresiones regulares, pues permiten establecer la presencia de cualquier caracter o secuencia de caracteres. Su utilidad se encuentra sobre todo con los reemplazos. Por ejemplo, con el caso anterior, podemos eliminar toda la URL y reducirla al número de control. Para ello solo hay que buscar `.*lccn-` y reemplazar por `lccn-`.
+
+```{r, echo=FALSE}
+knitr::kable(head(gsub('.*lccn-', 'lccn-', urls[grepl('lccn-\\w+\\d+',urls$URL, perl=TRUE),]), perl=TRUE), align = 'c', col.names = 'URL')
+```
+
+O incluso reducirla por completo al número reemplazando por una cadena de texto vacía.
+
+```{r, echo=FALSE}
+knitr::kable(head(gsub('.*lccn-', '', urls[grepl('lccn-\\w+\\d+',urls$URL, perl=TRUE),]), perl=TRUE), align = 'c', col.names = 'URL')
+```
+

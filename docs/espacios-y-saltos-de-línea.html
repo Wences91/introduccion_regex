@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Introducción a las expresiones regulares</title>
+  <title>4 Espacios y saltos de línea | Introducción a las expresiones regulares</title>
   <meta name="description" content="." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introducción a las expresiones regulares" />
+  <meta property="og:title" content="4 Espacios y saltos de línea | Introducción a las expresiones regulares" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://Wences91.github.io/introduccion_regex/" />
   <meta property="og:image" content="https://Wences91.github.io/introduccion_regex/general_images/casa_logo.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introducción a las expresiones regulares" />
+  <meta name="twitter:title" content="4 Espacios y saltos de línea | Introducción a las expresiones regulares" />
   
   <meta name="twitter:description" content="." />
   <meta name="twitter:image" content="https://Wences91.github.io/introduccion_regex/general_images/casa_logo.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introducción.html"/>
+<link rel="prev" href="cuantificadores.html"/>
+<link rel="next" href="referencias.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -92,11 +92,9 @@
 <li class="chapter" data-level="3.3" data-path="cuantificadores.html"><a href="cuantificadores.html#section-4"><i class="fa fa-check"></i><b>3.3</b> +</a></li>
 <li class="chapter" data-level="3.4" data-path="cuantificadores.html"><a href="cuantificadores.html#section-5"><i class="fa fa-check"></i><b>3.4</b> *</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="espacios-y-anclas.html"><a href="espacios-y-anclas.html"><i class="fa fa-check"></i><b>4</b> Espacios y anclas</a><ul>
-<li class="chapter" data-level="4.1" data-path="espacios-y-anclas.html"><a href="espacios-y-anclas.html#s"><i class="fa fa-check"></i><b>4.1</b> \s</a></li>
-<li class="chapter" data-level="4.2" data-path="espacios-y-anclas.html"><a href="espacios-y-anclas.html#t"><i class="fa fa-check"></i><b>4.2</b> \t</a></li>
-<li class="chapter" data-level="4.3" data-path="espacios-y-anclas.html"><a href="espacios-y-anclas.html#n"><i class="fa fa-check"></i><b>4.3</b> \n</a></li>
-<li class="chapter" data-level="4.4" data-path="espacios-y-anclas.html"><a href="espacios-y-anclas.html#y"><i class="fa fa-check"></i><b>4.4</b> ^ y $</a></li>
+<li class="chapter" data-level="4" data-path="espacios-y-saltos-de-línea.html"><a href="espacios-y-saltos-de-línea.html"><i class="fa fa-check"></i><b>4</b> Espacios y saltos de línea</a><ul>
+<li class="chapter" data-level="4.1" data-path="espacios-y-saltos-de-línea.html"><a href="espacios-y-saltos-de-línea.html#s-y-s"><i class="fa fa-check"></i><b>4.1</b> \s y \S</a></li>
+<li class="chapter" data-level="4.2" data-path="espacios-y-saltos-de-línea.html"><a href="espacios-y-saltos-de-línea.html#w-y-w-1"><i class="fa fa-check"></i><b>4.2</b> \w y \W</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -120,26 +118,97 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Introducción a las expresiones regulares</h1>
-<p class="author"><em>Wenceslao Arroyo-Machado <a href="https://twitter.com/Wences91">@Wences91</a></em></p>
-<p class="date"><em>15/02/2022</em></p>
+<div id="espacios-y-saltos-de-línea" class="section level1">
+<h1><span class="header-section-number">4</span> Espacios y saltos de línea</h1>
+<p>Dentro de las expresiones regulares existen varios caracteres especiales que permiten por ejemplo indicar que lo que se busca es un caracter alfanumérico o una secuencia de números, entre otras posibilidades.</p>
+<div id="s-y-s" class="section level2">
+<h2><span class="header-section-number">4.1</span> \s y \S</h2>
+<p>Mediante <code>\d</code> se establece la búsqueda de un dígito. De esta forma no necesitas indicar un número exacto, solo que un número ha de estar presente. Por ejemplo, sabiendo que en la URL de la web del New York Times aparece el año de publicación, podemos buscar noticias publicadas entre 2010 y 2019 buscando <code>www.nytimes.com/201\d</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><a href="https://www.nytimes.com/2019/05/07/opinion/data-privacy.html" class="uri">https://www.nytimes.com/2019/05/07/opinion/data-privacy.html</a></td>
+</tr>
+<tr class="even">
+<td align="center"><a href="http://www.nytimes.com/2011/02/03/books/03book.html" class="uri">http://www.nytimes.com/2011/02/03/books/03book.html</a></td>
+</tr>
+</tbody>
+</table>
+<p>Con <code>\D</code> el funcionamiento es justo el puesto, busca la no presencia de un digito. Esto no significa que busque solo letras. Usando el ejemplo anterior, podemos detectar si hay algún fallo en estar URLs buscando que detras de la URL base de la página exista algo que no sea un digito con <code>nytimes.com/\D</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><a href="http://www.nytimes.com/" class="uri">http://www.nytimes.com/</a> 2006/02/24/sports/olympics/24skate.html</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="presentación" class="section level1 unnumbered">
-<h1>Presentación</h1>
-<p><img src="images/cover.jpg" width="1250" /></p>
-<p>Este libro ha sido preparado para el curso <strong>Introducción a las expresiones regulares</strong> de la iniciativa <a href="https://yosigopublicando.ugr.es/">#yosigopublicando</a>. El objetivo del curso es ofrecer una introducción a las expresiones regulares, por lo que el contenido gira en torno a los aspectos básicos.</p>
-<p>El código está disponible en <a href="https://github.com/Wences91/introduccion_regex">GitHub</a>.</p>
-<p>Este trabajo cuenta con una licencia <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Atribución 4.0 Internacional</a>.</p>
+<div id="w-y-w-1" class="section level2">
+<h2><span class="header-section-number">4.2</span> \w y \W</h2>
+<p>Es posible buscar caracteres alfanuméricos de igual manera que antes usando <code>\w</code>. Por ejemplo, ahora quiero obtener todas las URLs del New York Times que no vayan a la página principal usando <code>www.nytimes.com/\w</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><a href="https://www.nytimes.com/2019/05/07/opinion/data-privacy.html" class="uri">https://www.nytimes.com/2019/05/07/opinion/data-privacy.html</a></td>
+</tr>
+<tr class="even">
+<td align="center"><a href="http://www.nytimes.com/2011/02/03/books/03book.html" class="uri">http://www.nytimes.com/2011/02/03/books/03book.html</a></td>
+</tr>
+</tbody>
+</table>
+<p>Nuevamente, si lo ponemos en mayúscula con <code>\W</code> su uso es el opuesto y busca la presencia de algo que no se de tipo alfanumérico. En este caso quiero probar a buscar en las URLs la presencia del texto <code>viaf</code> seguido de algo que no sea un dígito o letra con <code>viaf\W</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><a href="http://www.viaf.org/viaf/72689661" class="uri">http://www.viaf.org/viaf/72689661</a></td>
+</tr>
+<tr class="even">
+<td align="center"><a href="http://www.worldcat.org/identities/viaf-260281158" class="uri">http://www.worldcat.org/identities/viaf-260281158</a></td>
+</tr>
+<tr class="odd">
+<td align="center"><a href="https://www.viaf.org/viaf/8648888" class="uri">https://www.viaf.org/viaf/8648888</a></td>
+</tr>
+<tr class="even">
+<td align="center"><a href="http://www.viaf.org/viaf/24934751" class="uri">http://www.viaf.org/viaf/24934751</a></td>
+</tr>
+<tr class="odd">
+<td align="center"><a href="http://www.viaf.org/viaf/21209763" class="uri">http://www.viaf.org/viaf/21209763</a></td>
+</tr>
+<tr class="even">
+<td align="center"><a href="https://www.viaf.org/viaf/128732352" class="uri">https://www.viaf.org/viaf/128732352</a></td>
+</tr>
+</tbody>
+</table>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introducción.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="cuantificadores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referencias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -170,7 +239,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Wences91/introduccion_regex/edit/main/index.Rmd",
+"link": "https://github.com/Wences91/introduccion_regex/edit/main/04-espacios.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -178,10 +247,10 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/Wences91/introduccion_regex/blob/main/index.Rmd",
+"link": "https://github.com/Wences91/introduccion_regex/blob/main/04-espacios.Rmd",
 "text": null
 },
-"download": ["https://github.com/Wences91/introduccion_regex/raw/main/index.Rmd"],
+"download": ["https://github.com/Wences91/introduccion_regex/raw/main/04-espacios.Rmd"],
 "search": {
 "engine": "fuse",
 "options": null

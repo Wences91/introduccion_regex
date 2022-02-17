@@ -1,12 +1,64 @@
 # Introducción
+```{r, include=FALSE}
+urls <- read.delim2('urls.tsv', stringsAsFactors = FALSE)
+urls <- urls[which(nchar(urls$url)<70), 'url']
+urls <- as.data.frame(urls, stringsAsFactors = FALSE)
+names(urls) <- 'URL'
+```
+
+## La búsqueda literal
+
+Por defecto, al realizar una búsqueda sin expresiones regulares, los términos buscados son cotejados de forma literal. Por ejemplo, al buscar la palabra `google` localizamos todas las URLs que incluyen en alguna parte ese término, sin importar la posición, elementos que hay antes o después...
+
+```{r, echo=FALSE}
+knitr::kable(head(urls[grepl('book',urls$URL),]), align = 'c', col.names = 'URL')
+```
+
+Aunque en muchas ocasiones los sistemas de búsqueda no distinguen entre mayúsculas y minúsculas (*case sensitive*), pudiendo indicarse que exista esta distinción, no se puede descuidarse este aspecto. Si fijamos que el sistema diferencie entre mayúsculas y minúsculas y en lugar de buscar `book` buscamos `BOOK` los resultados serán diferentes.
+
+```{r, echo=FALSE}
+knitr::kable(head(urls[grepl('BOOK',urls$URL),]), align = 'c', col.names = 'URL')
+```
+
+## Los reemplazos
+
+Además de las busquedas, son posibles los reemplazos. Se trata de establecer un término de búsqueda y otro de reemplazo para que automaticamente la herramienta sustituya la primera cadena de texto por la segunda. Podemos así cambiar `BOOKS` por `books`.
+
+```{r, echo=FALSE}
+regex <- data.frame(URL=urls[grepl('BOOK',urls$URL),'URL'], stringsAsFactors = FALSE)
+regex$URL <- gsub('BOOKS', 'books', regex$URL, perl = 'TRUE')
+knitr::kable(head(regex), align = 'c', col.names = 'URL')
+```
+
+Es también habitual dejar el campo de reemplazo vacío para que los términos buscados sean sustituidos por una cadena vacía, lo que equivale a eliminar el texto que coincida con la búsqueda. Sería así posible buscar `http://www.` y remplazarlo por una cadena de texto vacía para eliminar esa parte de la URL.
+
+```{r, echo=FALSE}
+regex <- urls
+regex$URL <- gsub('http://www.', '', regex$URL)
+knitr::kable(head(regex), align = 'c', col.names = 'URL')
+```
 
 ## ¿Qué son las expresiones regulares?
 
-Una **exprexión regular** es una secuencia de caracteres que conforma un **patrón de búsqueda** cuya principal funcionalidad se encuentra en las operaciones de búsqueda y sustitución [@noauthor_expresion_2021].
+Una **exprexión regular** (también conocida como *regex*) es una secuencia de caracteres que conforma un **patrón de búsqueda** cuya principal funcionalidad se encuentra en las operaciones de búsqueda y sustitución [@noauthor_expresion_2021].
 
-Estas son de gran utilidad ya que pueden usarse en mútitud de herramientas, desde las hojas de cálculo de Google Drive (Figura \@ref(fig:drive-regex)) a editores de código o en programación.
+Estas son de gran utilidad ya que pueden usarse en mútitud de herramientas, desde las hojas de cálculo de Google Drive (Figura \@ref(fig:drive-regex)) a editores de código o en programación. Este método no debe confundirse con un lenguaje de programación si bien muchos de ellos ofrecen soporte para su uso.
 
 ```{r, drive-regex, echo=FALSE, fig.align = 'center', out.width = '50%', fig.cap = 'Búsqueda de expresiones regulares en las hojas de cálculo de Google Drive'}
 knitr::include_graphics('images/drive_regex.jpg', dpi = NA)
+```
+
+Las expresiones regulares son de utilidad para todo tipo de investigación en la que se trabaje con datos que contengan texto:
+
+* Tareas avanzadas de **búsqueda** y **reemplazo**
+* **Verificar** la estructura de textos
+* **Dividir** o **estructurar** textos
+
+Como muestra de estas aplicaciones, podemos en el caso de las URLs llevar a cabo una limpieza de las mismas reduciendolas todas ellas al dominio. Para ello simplemente (*depués verás que, efectivamente, es sencillo*) solo hay que indicar que busque la expresión regular `/.*` y la remplace por una cadena de texto vacia.
+
+```{r, echo=FALSE}
+regex <- urls
+regex$URL <- gsub('/.*', '', regex$URL, perl = 'TRUE', ignore.case = TRUE)
+knitr::kable(head(regex), align = 'c', col.names = 'URL')
 ```
 
