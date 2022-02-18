@@ -1,10 +1,10 @@
 # Introducción
+
 ```{r, include=FALSE}
-urls <- read.delim2('urls.tsv', stringsAsFactors = FALSE)
-urls <- urls[which(nchar(urls$url)<70), 'url']
-urls <- as.data.frame(urls, stringsAsFactors = FALSE)
-names(urls) <- 'URL'
+urls <- read.table('urls.tsv', sep=';', stringsAsFactors = FALSE, comment.char = '', header = TRUE)
 ```
+
+Para la parte introductoria se va a emplear como ejemplo un listado de URLs.
 
 ## La búsqueda literal
 
@@ -22,7 +22,7 @@ knitr::kable(head(urls[grepl('BOOK',urls$URL),]), align = 'c', col.names = 'URL'
 
 ## Los reemplazos
 
-Además de las busquedas, son posibles los reemplazos. Se trata de establecer un término de búsqueda y otro de reemplazo para que automaticamente la herramienta sustituya la primera cadena de texto por la segunda. Podemos así cambiar `BOOKS` por `books`.
+Además de las búsquedas, son posibles los reemplazos. Se trata de establecer un término de búsqueda y otro de reemplazo para que automáticamente la herramienta sustituya la primera cadena de texto por la segunda. Podemos así cambiar `BOOKS` por `books`.
 
 ```{r, echo=FALSE}
 regex <- data.frame(URL=urls[grepl('BOOK',urls$URL),'URL'], stringsAsFactors = FALSE)
@@ -40,13 +40,15 @@ knitr::kable(head(regex), align = 'c', col.names = 'URL')
 
 ## ¿Qué son las expresiones regulares?
 
-Una **exprexión regular** (también conocida como *regex*) es una secuencia de caracteres que conforma un **patrón de búsqueda** cuya principal funcionalidad se encuentra en las operaciones de búsqueda y sustitución [@noauthor_expresion_2021].
+Una **expresión regular** (también conocida como *regex*) es una secuencia de caracteres que conforma un **patrón de búsqueda** cuya principal funcionalidad se encuentra en las operaciones de búsqueda y sustitución [@noauthor_expresion_2021].
 
-Estas son de gran utilidad ya que pueden usarse en mútitud de herramientas, desde las hojas de cálculo de Google Drive (Figura \@ref(fig:drive-regex)) a editores de código o en programación. Este método no debe confundirse con un lenguaje de programación si bien muchos de ellos ofrecen soporte para su uso.
+Estas son de gran utilidad ya que pueden usarse en multitud de herramientas, desde las hojas de cálculo de Google Drive (Figura \@ref(fig:drive-regex)) a editores de código o en programación. Este método no debe confundirse con un lenguaje de programación si bien muchos de ellos ofrecen soporte para su uso.
 
 ```{r, drive-regex, echo=FALSE, fig.align = 'center', out.width = '50%', fig.cap = 'Búsqueda de expresiones regulares en las hojas de cálculo de Google Drive'}
 knitr::include_graphics('images/drive_regex.jpg', dpi = NA)
 ```
+
+Aunque no todas ellas pueden aplicarse en todas las herramientas que permiten su uso y pueden existir diferencias en la sintaxis, de manera general los aspectos básicos son comunes. De igual manera, no hay una solución única y perfecta, siendo posible obtener el mismo resultado a través de diferentes expresiones.
 
 Las expresiones regulares son de utilidad para todo tipo de investigación en la que se trabaje con datos que contengan texto:
 
@@ -54,7 +56,7 @@ Las expresiones regulares son de utilidad para todo tipo de investigación en la
 * **Verificar** la estructura de textos
 * **Dividir** o **estructurar** textos
 
-Como muestra de estas aplicaciones, podemos en el caso de las URLs llevar a cabo una limpieza de las mismas reduciendolas todas ellas al dominio. Para ello simplemente (*depués verás que, efectivamente, es sencillo*) solo hay que indicar que busque la expresión regular `/.*` y la remplace por una cadena de texto vacia.
+Como muestra de estas aplicaciones, podemos en el caso de las URLs llevar a cabo una limpieza de las mismas reduciéndolas todas ellas al dominio. Para ello simplemente (*después verás que, efectivamente, es sencillo*) solo hay que indicar que busque la expresión regular `/.*` y la remplace por una cadena de texto vacía.
 
 ```{r, echo=FALSE}
 regex <- urls

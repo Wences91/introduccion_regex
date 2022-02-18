@@ -1,18 +1,17 @@
 --- 
 title: 'Introducción a las expresiones regulares'
 author: 'Wenceslao Arroyo-Machado [\@Wences91](https://twitter.com/Wences91)'
-date: '15/02/2022'
+date: '18/02/2022'
 knit: 'bookdown::render_book'
 documentclass: book
 site: bookdown::bookdown_site
 output: bookdown::gitbook
-bibliography: references.bib
+bibliography: referencias.bib
 biblio-style: 'apalike'
 description: |
-  .
+  Material del curso "Introducción a las expresiones regulares" de la iniciativa #yosigopublicando.
 link-citations: yes
 url: 'https\://Wences91.github.io/introduccion_regex/'
-cover-image: general_images/casa_logo.png
 ---
 
 ```{r setup, include=FALSE}
@@ -24,11 +23,12 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```{r, echo=FALSE}
 knitr::include_graphics('images/cover.jpg')
 ```
+<font size='2'>Imagen de <a href='https://twitter.com/niko_4696'>\@niko_4696</a> [<a href='https://www.4696.digital/wallpapers'>4696</a>]</font>
 
-Este libro ha sido preparado para el curso **Introducción a las expresiones regulares** de la iniciativa [#yosigopublicando](https://yosigopublicando.ugr.es/). El objetivo del curso es ofrecer una introducción a las expresiones regulares, por lo que el contenido gira en torno a los aspectos básicos.
+Este documento ha sido preparado para el curso **Introducción a las expresiones regulares** de la iniciativa [#yosigopublicando](https://yosigopublicando.ugr.es/). El objetivo del curso es ofrecer una introducción a las expresiones regulares, por lo que el contenido gira en torno a los aspectos básicos y de aplicación común en la diferentes herramientas que las integran.
 
-El código está disponible en [GitHub](https://github.com/Wences91/introduccion_regex).
-
-
+Existen diferentes recursos de apoyo con los que profundizar en las expresiones regulares, a destacar el tutorial de @chodnicki_everything_2019 y el libro de @fitzgerald_introducing_2012.
 
 Este trabajo cuenta con una licencia <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Atribución 4.0 Internacional</a>.
+
+El código está disponible en [GitHub](https://github.com/Wences91/introduccion_regex).

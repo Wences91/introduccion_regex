@@ -1,17 +1,18 @@
 # Opciones avanzadas y otras aplicaciones
+
 ```{r, include=FALSE}
 alice <- read.table('alice_in_wonderland.txt', quote = '', sep='\t', stringsAsFactors = FALSE, encoding = 'UTF-8')
 ```
 
-Existen otras muchas posibilidades con las expresiones regulares, de entre ellas vamos a destacar algunas de las más relevantes. Por ello, en esta ocasión los datos sobre los que se van a aplicar son diferentes, usando ahora la novela *Alice's Adventures in Wonderland*.
+Existen otras muchas posibilidades con las expresiones regulares, de entre ellas vamos a destacar algunas de las más relevantes. Por ello, en esta ocasión los datos sobre los que se van a aplicar son diferentes, usando ahora el primer capítulo de la novela *Alice's Adventures in Wonderland* [@carroll_alices_1865].
 
 ## Lookarounds
 
-De manera más avanzada, existe la opción de marcar elementos situados delante o detrás de un determinado caracter o cadena de caracateres o, a la inversa, localizar lo que no está precedido o seguido de ello. Una de sus utilidades está en realizar operaciones de extracción o reemplazo muy especificas que de otro modo no serían posibles o más complejas.
+De manera más avanzada, existe la opción de marcar elementos situados delante o detrás de un determinado carácter o cadena de caracteres o, a la inversa, localizar lo que no está precedido o seguido de ello. Una de sus utilidades está en realizar operaciones de extracción o reemplazo muy especificas que de otro modo no serían posibles o más complejas.
 
 ### (?=)
 
-Para localizar un elemento que precede a una expresion regular se puede usar el denominado `positive lookahead` con `(?=)`. Por ejemplo, con `'.*'(?=\ssaid Alice)` podemos seleccionar las frases que dice Alice y por medio de `str_extract()` extraer dichas frases.
+Para localizar un elemento que precede a una expresión regular se puede usar el denominado `positive lookahead` con `(?=)`. Por ejemplo, con `'.*'(?=\ssaid Alice)` podemos seleccionar las frases que dice Alice y por medio de `str_extract()` extraer dichas frases.
 
 ```{r, echo=FALSE}
 head(stringr::str_extract(alice[grepl("'.*'(?=\\ssaid Alice)",alice$V1, perl=TRUE),],stringr::regex("'.*'(?=\\ssaid Alice)")))
@@ -19,24 +20,34 @@ head(stringr::str_extract(alice[grepl("'.*'(?=\\ssaid Alice)",alice$V1, perl=TRU
 
 ### (?!)
 
-Existe una versión negativa denominada `negative lookahead`, con la que es posible localizar elementos que no vengan seguidos de un determinado patrón. Por ejemplo, con `'.*'(?!\ssaid\sAlice)` el resultado sería justamente el opuesto, recuperando así todas las citas de personajes que no sean Alice.
+Existe una versión negativa denominada `negative lookahead`, con la que es posible localizar elementos que no vengan seguidos de un determinado patrón. Por ejemplo, con `'.*'\sthought(?!\sAlice)` se seleccionarían todas las citas textual seguidas de `thought` pero que tras ello no aparece el nombre de Alice.
 
 ```{r, echo=FALSE}
-head(stringr::str_extract(alice[grepl("'.*'(?!\\ssaid\\sAlice)",alice$V1, perl=TRUE),],stringr::regex("'.*'(?!\\ssaid\\sAlice)")))
+head(stringr::str_extract(alice[grepl("'.*'\\sthought(?!\\spoor\\sAlice)",alice$V1, perl=TRUE),],stringr::regex("'.*'\\sthought(?!\\spoor\\sAlice)")))
 ```
 
 ### (?<=)
 
-Junto a esta opción esta la de localizar un caracter o cadena que 
+Además de `positive lookahead` se encuentra `positive lookbehind`. En este último, en lugar de marcar el patrón por la derecha de la cadena de texto que se quiere identificar se hace por la izquierda, permitiendo identificar elementos que están justo a continuación. Por ejemplo, con `(?<='\ssaid\s)\w+` se busca el nombre del personaje que dice la cita.
 
 ```{r, echo=FALSE}
-head(stringr::str_extract(alice[grepl('(?<=\\ssaid\\s)the\\s\\w+',alice$V1,  perl=TRUE),],stringr::regex('(?<=\\ssaid\\s)the\\s\\w+')))
+head(stringr::str_extract(alice[grepl("(?<='\\ssaid\\s)\\w+",alice$V1, perl=TRUE),],stringr::regex("(?<='\\ssaid\\s)\\w+")))
 ```
 
 ### (?<!)
 
-Junto a esta opción esta la de localizar un caracter o cadena que 
+En su versión negativa, `negative lookbehind`, permite con `(?<!)` seleccionar elementos que no vienen precedidos por un determinado patrón. Por ejemplo, con `(?<!White\s)Rabbit.*` podemos seleccionar las frases sobre `Rabbit` cuando inmediatamente delante no tiene la palabra `White`.
 
 ```{r, echo=FALSE}
-head(stringr::str_extract(alice[grepl('(?<=\\ssaid\\s)the\\s\\w+',alice$V1,  perl=TRUE),],stringr::regex('(?<=\\ssaid\\s)the\\s\\w+')))
+head(stringr::str_extract(alice[grepl("(?<!White\\s)Rabbit.*",alice$V1, perl=TRUE),],stringr::regex("(?<!White\\s)Rabbit.*")))
 ```
+
+## Patrones de sustitución
+
+Existen patrones específicos en los reemplazos. Una vez realizada una búsqueda en la que se establezcan varios conjuntos mediante el uso de los paréntesis `()`, mediante `$` se puede reemplazar la cadena con uno de los conjuntos. Resulta de utilidad para cambiar el orden en cadenas de caracteres. Por ejemplo, buscando `(White\s)(Rabbit\s)` y remplazando por `$2$1` lo que conseguimos es sustituir `White Rabbit` por `Rabbit White`.
+
+```{r, echo=FALSE}
+head(gsub("(White\\s)(Rabbit\\s)", '\\2\\1', alice[grepl("(White\\s)(Rabbit\\s)",alice$V1, perl=TRUE),], perl = TRUE))
+```
+
+

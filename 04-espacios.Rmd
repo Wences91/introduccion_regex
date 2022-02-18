@@ -1,9 +1,7 @@
 # Espacios y anclas
+
 ```{r, include=FALSE}
-urls <- read.delim2('urls.tsv', stringsAsFactors = FALSE)
-urls <- urls[which(nchar(urls$url)<70), 'url']
-urls <- as.data.frame(urls, stringsAsFactors = FALSE)
-names(urls) <- 'URL'
+urls <- read.table('urls.tsv', sep=';', stringsAsFactors = FALSE, comment.char = '', header = TRUE)
 ```
 
 Los espacios, saltos de líneas y ubicación de las cadenas son otro de los elementos que pueden ser controlados y tenidos en cuenta a través de expresiones regulares.
@@ -24,7 +22,7 @@ knitr::kable(head(gsub('\\s+', '', urls[grepl('\\s+',urls$URL, perl=TRUE),]), pe
 
 ## \\t
 
-Las tabulaciones pueden ser facilmente identificadas con expresiones regulares usando `\t`. A veces estas tabulaciones pueden ser confundidas con espacios en blanco.
+Las tabulaciones pueden ser fácilmente identificadas con expresiones regulares usando `\t`. A veces estas tabulaciones pueden ser confundidas con espacios en blanco.
 
 ```{r, echo=FALSE}
 knitr::kable(head(urls[grepl('\\t+',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')
@@ -36,7 +34,7 @@ En algunas ocasiones los datos pueden incluir por error tabulaciones que de mism
 knitr::kable(head(gsub('\\t+', '', urls[grepl('\\t+',urls$URL, perl=TRUE),]), perl=TRUE), align = 'c', col.names = 'URL')
 ```
 
-De forma inversa, se pueden insertar tabulaciones a modo de reemplazo, sustituyendo un caracter o conjunto de caracteres por ello. Por ejemplo, se pueden reemplazar las barras invertidas por tabulaciones buscando `/` y reemplazando por `\t`.
+De forma inversa, se pueden insertar tabulaciones a modo de reemplazo, sustituyendo un carácter o conjunto de caracteres por ello. Por ejemplo, se pueden reemplazar las barras invertidas por tabulaciones buscando `/` y reemplazando por `\t`.
 
 ```{r, echo=FALSE}
 knitr::kable(head(gsub('/', '\t', urls$URL, perl=TRUE)), align = 'c', col.names = 'URL')
@@ -46,13 +44,13 @@ Pero <u>no olvides</u> que algunos ficheros pueden venir delimitados por estos c
 
 ## \\n
 
-Con los saltos de línea ocurre lo mismo que con los espacios y las tabulaciones. Son facilmente localizables usando `\n` y las aplicaciones y advertencias vistas en las tabulaciones son directamente trasladables aquí.
+Con los saltos de línea ocurre lo mismo que con los espacios y las tabulaciones. Son fácilmente localizables usando `\n` y las aplicaciones y advertencias vistas en las tabulaciones son directamente trasladables aquí.
 
 ```{r, echo=FALSE}
 knitr::kable(head(gsub('\\n', '\\s', gsub('\\n', '<br>', urls[grepl('\\n',urls$URL, perl=TRUE),])), perl=TRUE), align = 'c', col.names = 'URL', escape = FALSE)
 ```
 
-Por un lado es facil solucionar problemas en los datos o mejorar su estructura, por ejemplo reemplazando saltos de líneas `\t` por espacios `\s` o cadenas de texto vacías.
+Por un lado, es fácil solucionar problemas en los datos o mejorar su estructura, por ejemplo reemplazando saltos de líneas `\t` por espacios `\s` o cadenas de texto vacías.
 
 ```{r, echo=FALSE}
 knitr::kable(head(gsub('\\n', '\\s', urls[grepl('\\n',urls$URL, perl=TRUE),]), perl=TRUE), align = 'c', col.names = 'URL', escape = FALSE)
@@ -70,7 +68,7 @@ Nuevamente, ten cuidado al eliminar o crear líneas, sobre todo cuando apliques 
 
 En relación con ello se encuentran las anclas, con las que se puede marcar el inicio y final de una línea, delimitando mejor las búsquedas y reemplazos. Algo que además puede ser de ayuda cuando se usa en combinación los saltos de línea.
 
-Con `^` se marca el inico de la línea. En este caso podemos usarlo por ejemplo para buscar todas aquellas URLs que comiencen por `book` con `^book`.
+Con `^` se marca el inicio de la línea. En este caso podemos usarlo por ejemplo para buscar todas aquellas URLs que comiencen por `book` con `^book`.
 
 ```{r, echo=FALSE}
 knitr::kable(head(urls[grepl('^book',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')

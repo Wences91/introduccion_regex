@@ -1,16 +1,14 @@
 # Elementos básicos
+
 ```{r, include=FALSE}
-urls <- read.delim2('urls.tsv', stringsAsFactors = FALSE)
-urls <- urls[which(nchar(urls$url)<70), 'url']
-urls <- as.data.frame(urls, stringsAsFactors = FALSE)
-names(urls) <- 'URL'
+urls <- read.table('urls.tsv', sep=';', stringsAsFactors = FALSE, comment.char = '', header = TRUE)
 ```
 
-Dentro de las expresiones regulares existen varios caracteres especiales que permiten por ejemplo indicar que lo que se busca es un caracter alfanumérico o una secuencia de números, entre otras posibilidades.
+Dentro de las expresiones regulares existen varios caracteres especiales que permiten por ejemplo indicar que lo que se busca es un carácter alfanumérico o una secuencia de números, entre otras posibilidades.
 
 ## .
 
-El punto `.` es uno de los caracteres fundamentales de las expresiones regulares. Es representa la presencia de un caracter de cualquier tipo. No tiene que ser ni siquiera alfanumérico. De esta forma, al buscar `book.` se localizan tanto las URLs que incluyen `books`como `book/`.
+El punto `.` es uno de los caracteres fundamentales de las expresiones regulares. Es representa la presencia de un carácter de cualquier tipo. No tiene que ser ni siquiera alfanumérico. De esta forma, al buscar `book.` se localizan tanto las URLs que incluyen `books`como `book/`.
 
 ```{r, echo=FALSE}
 knitr::kable(head(urls[grepl('book.',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')
@@ -18,7 +16,7 @@ knitr::kable(head(urls[grepl('book.',urls$URL, perl=TRUE),]), align = 'c', col.n
 
 ## \\
 
-No obstante, en caso de querer buscar literalmente el punto se necesita "*escapar*". Mediante el uso de la barra invertida `\` podemos establecer la búsqueda literal de un caracter que tiene alguna funcionalidad especial dentro de las expresiones regulares como el punto o los paréntesis. En el caso de querer buscar literalmente `book.` habría que usar `book\.`.
+No obstante, en caso de querer buscar literalmente el punto se necesita "*escapar*". Mediante el uso de la barra invertida `\` podemos establecer la búsqueda literal de un carácter que tiene alguna funcionalidad especial dentro de las expresiones regulares como el punto o los paréntesis. En el caso de querer buscar literalmente `book.` habría que usar `book\.`.
 
 ```{r, echo=FALSE}
 knitr::kable(head(urls[grepl('book\\.',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')
@@ -34,7 +32,7 @@ Mediante `\d` se establece la búsqueda de un dígito. De esta forma no necesita
 knitr::kable(head(urls[grepl('nytimes.com/201\\d',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')
 ```
 
-Con `\D` el funcionamiento es justo el puesto, busca la no presencia de un digito. Esto no significa que busque solo letras. Usando el ejemplo anterior, podemos detectar si hay algún fallo en estar URLs buscando que detras de la URL base de la página exista algo que no sea un digito con `nytimes.com/\D`.
+Con `\D` el funcionamiento es justo el puesto, busca la no presencia de un digito. Esto no significa que busque solo letras. Usando el ejemplo anterior, podemos detectar si hay algún fallo en estar URLs buscando que detrás de la URL base de la página exista algo que no sea un digito con `nytimes.com/\D`.
 
 ```{r, echo=FALSE}
 knitr::kable(head(urls[grepl('nytimes.com/\\D',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')
@@ -57,19 +55,19 @@ knitr::kable(head(urls[grepl('viaf\\W',urls$URL, perl=TRUE),]), align = 'c', col
 
 ## []
 
-De manera más precisa se pueden especificar que rango de caracteres estamos buscando haciendo uso de los corchetes `[]`. Este representa un único elemento y en su interior se representan los diferente valores que puede tomar. Retomando el primer ejemplo del New York Times, es posible determinar ese rango de año de manera mucho más precisa, reduciéndolo a 2011 y 2012 con `nytimes.com/201[12]`. En este caso no busca `12` sino que busca la presencia del `1` o del `2`.
+De manera más precisa se pueden especificar que rango de caracteres estamos buscando haciendo uso de los corchetes `[]`. Este representa un único elemento y en su interior se representan los diferentes valores que puede tomar. Retomando el primer ejemplo del New York Times, es posible determinar ese rango de año de manera mucho más precisa, reduciéndolo a 2011 y 2012 con `nytimes.com/201[12]`. En este caso no busca `12` sino que busca la presencia del `1` o del `2`.
 
 ```{r, echo=FALSE}
 knitr::kable(head(urls[grepl('nytimes.com/201[12]',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')
 ```
 
-Es posible todo tipo de combinaciones, incluyendo no solo caracteres alfanuméricos sino también de otro tipo. En el caso de la anterior búsqueda de viaf le podemos indicar que detrá de viaf aparezca `-` o `/` usando `viaf[/-]`.
+Es posible todo tipo de combinaciones, incluyendo no solo caracteres alfanuméricos sino también de otro tipo. En el caso de la anterior búsqueda de viaf le podemos indicar que detrás de viaf aparezca `-` o `/` usando `viaf[/-]`.
 
 ```{r, echo=FALSE}
 knitr::kable(head(urls[grepl('viaf[/-]',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')
 ```
 
-Si quisieramos establecer con los rango la presencia de un valor númerico cualquiera no tenemos que escribir todos ellos, se puede emplear `[0-9]`, al igual que ocurre con los caracteres alfabéticos `[a-z]`. Aunque en este último caso la búsqueda quedaría limitada a todos aquellos que aparezcan en minúscula, para buscar en mayúscula se usaría `[A-Z]` y si queremos tener en cuenta ambos `[a-zA-Z]`. De esta forma, si quiseramos localizar las URLs que incluyen una mayúscula se puede emplear `[A-Z]`.
+Si quisiéramos establecer con los rango la presencia de un valor numérico cualquiera no tenemos que escribir todos ellos, se puede emplear `[0-9]`, al igual que ocurre con los caracteres alfabéticos `[a-z]`. Aunque en este último caso la búsqueda quedaría limitada a todos aquellos que aparezcan en minúscula, para buscar en mayúscula se usaría `[A-Z]` y si queremos tener en cuenta ambos `[a-zA-Z]`. De esta forma, si quisiéramos localizar las URLs que incluyen una mayúscula se puede emplear `[A-Z]`.
 
 ```{r, echo=FALSE}
 knitr::kable(head(urls[grepl('[A-Z]',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')
@@ -83,7 +81,7 @@ knitr::kable(head(urls[grepl('nytimes.com/201[^01]',urls$URL, perl=TRUE),]), ali
 
 ## |
 
-Es posible combinar dos o más expresiones regulares de manera lógica y como el operador booleano OR usando la barra vertical `|`. Por ejemplo, para localizar URLs que contengan `.gov` o `.org` se puede usar la expresión `(\.com)|(\.co\.uk)`.
+Es posible combinar dos o más expresiones regulares de manera lógica y como el operador booleano OR usando la barra vertical `|`. Por ejemplo, para localizar URLs que contengan `.gov` o `.org` se puede usar la expresión `(\.gov)|(\.org)`.
 
 ```{r, echo=FALSE}
 knitr::kable(head(urls[grepl('(\\.gov)|(\\.org)',urls$URL, perl=TRUE),]), align = 'c', col.names = 'URL')

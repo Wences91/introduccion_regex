@@ -5,21 +5,21 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Introducción | Introducción a las expresiones regulares</title>
-  <meta name="description" content="." />
+  <meta name="description" content="Material del curso “Introducción a las expresiones regulares” de la iniciativa #yosigopublicando." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Introducción | Introducción a las expresiones regulares" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://Wences91.github.io/introduccion_regex/" />
-  <meta property="og:image" content="https://Wences91.github.io/introduccion_regex/general_images/casa_logo.png" />
-  <meta property="og:description" content="." />
+  
+  <meta property="og:description" content="Material del curso “Introducción a las expresiones regulares” de la iniciativa #yosigopublicando." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="1 Introducción | Introducción a las expresiones regulares" />
   
-  <meta name="twitter:description" content="." />
-  <meta name="twitter:image" content="https://Wences91.github.io/introduccion_regex/general_images/casa_logo.png" />
+  <meta name="twitter:description" content="Material del curso “Introducción a las expresiones regulares” de la iniciativa #yosigopublicando." />
+  
 
 <meta name="author" content="Wenceslao Arroyo-Machado @Wences91" />
 
@@ -32,6 +32,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="elementos-básicos.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -56,6 +57,28 @@
 
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -74,34 +97,50 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
-<li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="introducción.html"><a href="introducción.html#la-búsqueda-literal"><i class="fa fa-check"></i><b>1.1</b> La búsqueda literal</a></li>
 <li class="chapter" data-level="1.2" data-path="introducción.html"><a href="introducción.html#los-reemplazos"><i class="fa fa-check"></i><b>1.2</b> Los reemplazos</a></li>
 <li class="chapter" data-level="1.3" data-path="introducción.html"><a href="introducción.html#qué-son-las-expresiones-regulares"><i class="fa fa-check"></i><b>1.3</b> ¿Qué son las expresiones regulares?</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="elementos-básicos.html"><a href="elementos-básicos.html"><i class="fa fa-check"></i><b>2</b> Elementos básicos</a><ul>
+<li class="chapter" data-level="2" data-path="elementos-básicos.html"><a href="elementos-básicos.html"><i class="fa fa-check"></i><b>2</b> Elementos básicos</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="elementos-básicos.html"><a href="elementos-básicos.html#section"><i class="fa fa-check"></i><b>2.1</b> .</a></li>
 <li class="chapter" data-level="2.2" data-path="elementos-básicos.html"><a href="elementos-básicos.html#section-1"><i class="fa fa-check"></i><b>2.2</b> \</a></li>
 <li class="chapter" data-level="2.3" data-path="elementos-básicos.html"><a href="elementos-básicos.html#d-y-d"><i class="fa fa-check"></i><b>2.3</b> \d y \D</a></li>
 <li class="chapter" data-level="2.4" data-path="elementos-básicos.html"><a href="elementos-básicos.html#w-y-w"><i class="fa fa-check"></i><b>2.4</b> \w y \W</a></li>
-<li class="chapter" data-level="2.5" data-path="elementos-básicos.html"><a href="elementos-básicos.html#rangos"><i class="fa fa-check"></i><b>2.5</b> Rangos []</a></li>
+<li class="chapter" data-level="2.5" data-path="elementos-básicos.html"><a href="elementos-básicos.html#section-2"><i class="fa fa-check"></i><b>2.5</b> []</a></li>
+<li class="chapter" data-level="2.6" data-path="elementos-básicos.html"><a href="elementos-básicos.html#section-3"><i class="fa fa-check"></i><b>2.6</b> |</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="cuantificadores.html"><a href="cuantificadores.html"><i class="fa fa-check"></i><b>3</b> Cuantificadores</a><ul>
-<li class="chapter" data-level="3.1" data-path="cuantificadores.html"><a href="cuantificadores.html#section-2"><i class="fa fa-check"></i><b>3.1</b> {}</a></li>
-<li class="chapter" data-level="3.2" data-path="cuantificadores.html"><a href="cuantificadores.html#section-3"><i class="fa fa-check"></i><b>3.2</b> ?</a></li>
-<li class="chapter" data-level="3.3" data-path="cuantificadores.html"><a href="cuantificadores.html#section-4"><i class="fa fa-check"></i><b>3.3</b> +</a></li>
-<li class="chapter" data-level="3.4" data-path="cuantificadores.html"><a href="cuantificadores.html#section-5"><i class="fa fa-check"></i><b>3.4</b> *</a></li>
+<li class="chapter" data-level="3" data-path="cuantificadores.html"><a href="cuantificadores.html"><i class="fa fa-check"></i><b>3</b> Cuantificadores</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cuantificadores.html"><a href="cuantificadores.html#section-4"><i class="fa fa-check"></i><b>3.1</b> {}</a></li>
+<li class="chapter" data-level="3.2" data-path="cuantificadores.html"><a href="cuantificadores.html#section-5"><i class="fa fa-check"></i><b>3.2</b> ?</a></li>
+<li class="chapter" data-level="3.3" data-path="cuantificadores.html"><a href="cuantificadores.html#section-6"><i class="fa fa-check"></i><b>3.3</b> +</a></li>
+<li class="chapter" data-level="3.4" data-path="cuantificadores.html"><a href="cuantificadores.html#section-7"><i class="fa fa-check"></i><b>3.4</b> *</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="espacios-y-anclas.html"><a href="espacios-y-anclas.html"><i class="fa fa-check"></i><b>4</b> Espacios y anclas</a><ul>
+<li class="chapter" data-level="4" data-path="espacios-y-anclas.html"><a href="espacios-y-anclas.html"><i class="fa fa-check"></i><b>4</b> Espacios y anclas</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="espacios-y-anclas.html"><a href="espacios-y-anclas.html#s"><i class="fa fa-check"></i><b>4.1</b> \s</a></li>
 <li class="chapter" data-level="4.2" data-path="espacios-y-anclas.html"><a href="espacios-y-anclas.html#t"><i class="fa fa-check"></i><b>4.2</b> \t</a></li>
 <li class="chapter" data-level="4.3" data-path="espacios-y-anclas.html"><a href="espacios-y-anclas.html#n"><i class="fa fa-check"></i><b>4.3</b> \n</a></li>
 <li class="chapter" data-level="4.4" data-path="espacios-y-anclas.html"><a href="espacios-y-anclas.html#y"><i class="fa fa-check"></i><b>4.4</b> ^ y $</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="opciones-avanzadas-y-otras-aplicaciones.html"><a href="opciones-avanzadas-y-otras-aplicaciones.html"><i class="fa fa-check"></i><b>5</b> Opciones avanzadas y otras aplicaciones</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="opciones-avanzadas-y-otras-aplicaciones.html"><a href="opciones-avanzadas-y-otras-aplicaciones.html#lookarounds"><i class="fa fa-check"></i><b>5.1</b> Lookarounds</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="opciones-avanzadas-y-otras-aplicaciones.html"><a href="opciones-avanzadas-y-otras-aplicaciones.html#section-8"><i class="fa fa-check"></i><b>5.1.1</b> (?=)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="opciones-avanzadas-y-otras-aplicaciones.html"><a href="opciones-avanzadas-y-otras-aplicaciones.html#section-9"><i class="fa fa-check"></i><b>5.1.2</b> (?!)</a></li>
+<li class="chapter" data-level="5.1.3" data-path="opciones-avanzadas-y-otras-aplicaciones.html"><a href="opciones-avanzadas-y-otras-aplicaciones.html#section-10"><i class="fa fa-check"></i><b>5.1.3</b> (?&lt;=)</a></li>
+<li class="chapter" data-level="5.1.4" data-path="opciones-avanzadas-y-otras-aplicaciones.html"><a href="opciones-avanzadas-y-otras-aplicaciones.html#section-11"><i class="fa fa-check"></i><b>5.1.4</b> (?&lt;!)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="opciones-avanzadas-y-otras-aplicaciones.html"><a href="opciones-avanzadas-y-otras-aplicaciones.html#patrones-de-sustitución"><i class="fa fa-check"></i><b>5.2</b> Patrones de sustitución</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
-<center><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Elaborado con bookdown</a> en <i class="fa fa-r-project"></i></li></center>
+<center><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br>
+Elaborado con <a href="https://github.com/rstudio/bookdown" target="blank">bookdown</a> en <svg aria-hidden="true" role="img" viewBox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:steelblue;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg></center><br>
 
 </ul>
 
@@ -120,9 +159,10 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introducción" class="section level1">
+<div id="introducción" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introducción</h1>
-<div id="la-búsqueda-literal" class="section level2">
+<p>Para la parte introductoria se va a emplear como ejemplo un listado de URLs.</p>
+<div id="la-búsqueda-literal" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> La búsqueda literal</h2>
 <p>Por defecto, al realizar una búsqueda sin expresiones regulares, los términos buscados son cotejados de forma literal. Por ejemplo, al buscar la palabra <code>google</code> localizamos todas las URLs que incluyen en alguna parte ese término, sin importar la posición, elementos que hay antes o después…</p>
 <table>
@@ -166,9 +206,9 @@
 </tbody>
 </table>
 </div>
-<div id="los-reemplazos" class="section level2">
+<div id="los-reemplazos" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Los reemplazos</h2>
-<p>Además de las busquedas, son posibles los reemplazos. Se trata de establecer un término de búsqueda y otro de reemplazo para que automaticamente la herramienta sustituya la primera cadena de texto por la segunda. Podemos así cambiar <code>BOOKS</code> por <code>books</code>.</p>
+<p>Además de las búsquedas, son posibles los reemplazos. Se trata de establecer un término de búsqueda y otro de reemplazo para que automáticamente la herramienta sustituya la primera cadena de texto por la segunda. Podemos así cambiar <code>BOOKS</code> por <code>books</code>.</p>
 <table>
 <thead>
 <tr class="header">
@@ -210,23 +250,24 @@
 </tbody>
 </table>
 </div>
-<div id="qué-son-las-expresiones-regulares" class="section level2">
+<div id="qué-son-las-expresiones-regulares" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> ¿Qué son las expresiones regulares?</h2>
-<p>Una <strong>exprexión regular</strong> (también conocida como <em>regex</em>) es una secuencia de caracteres que conforma un <strong>patrón de búsqueda</strong> cuya principal funcionalidad se encuentra en las operaciones de búsqueda y sustitución <span class="citation">(“Expresión Regular” <a href="#ref-noauthor_expresion_2021" role="doc-biblioref">2021</a>)</span>.</p>
-<p>Estas son de gran utilidad ya que pueden usarse en mútitud de herramientas, desde las hojas de cálculo de Google Drive (Figura <a href="introducción.html#fig:drive-regex">1.1</a>) a editores de código o en programación.</p>
+<p>Una <strong>expresión regular</strong> (también conocida como <em>regex</em>) es una secuencia de caracteres que conforma un <strong>patrón de búsqueda</strong> cuya principal funcionalidad se encuentra en las operaciones de búsqueda y sustitución <span class="citation">(<a href="#ref-noauthor_expresion_2021" role="doc-biblioref"><span>“Expresión Regular”</span> 2021</a>)</span>.</p>
+<p>Estas son de gran utilidad ya que pueden usarse en multitud de herramientas, desde las hojas de cálculo de Google Drive (Figura <a href="introducción.html#fig:drive-regex">1.1</a>) a editores de código o en programación. Este método no debe confundirse con un lenguaje de programación si bien muchos de ellos ofrecen soporte para su uso.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:drive-regex"></span>
 <img src="images/drive_regex.jpg" alt="Búsqueda de expresiones regulares en las hojas de cálculo de Google Drive" width="50%" />
 <p class="caption">
 Fig. 1.1: Búsqueda de expresiones regulares en las hojas de cálculo de Google Drive
 </p>
 </div>
-<p>Las expresiones regulares son de utilidad para:</p>
+<p>Aunque no todas ellas pueden aplicarse en todas las herramientas que permiten su uso y pueden existir diferencias en la sintaxis, de manera general los aspectos básicos son comunes. De igual manera, no hay una solución única y perfecta, siendo posible obtener el mismo resultado a través de diferentes expresiones.</p>
+<p>Las expresiones regulares son de utilidad para todo tipo de investigación en la que se trabaje con datos que contengan texto:</p>
 <ul>
 <li>Tareas avanzadas de <strong>búsqueda</strong> y <strong>reemplazo</strong></li>
 <li><strong>Verificar</strong> la estructura de textos</li>
 <li><strong>Dividir</strong> o <strong>estructurar</strong> textos</li>
 </ul>
-<p>Como muestra de estas aplicaciones, podemos en el caso de las URLs llevar a cabo una limpieza de las mismas reduciendolas todas ellas al dominio. Para ello simplemente (<em>depués verás que, efectivamente, es sencillo</em>) solo hay que indicar que busque la expresión regular <code>/.*</code> y la remplace por una cadena de texto vacia.</p>
+<p>Como muestra de estas aplicaciones, podemos en el caso de las URLs llevar a cabo una limpieza de las mismas reduciéndolas todas ellas al dominio. Para ello simplemente (<em>después verás que, efectivamente, es sencillo</em>) solo hay que indicar que busque la expresión regular <code>/.*</code> y la remplace por una cadena de texto vacía.</p>
 <table>
 <thead>
 <tr class="header">
@@ -258,9 +299,9 @@ Fig. 1.1: Búsqueda de expresiones regulares en las hojas de cálculo de Google 
 </div>
 </div>
 <h3>Referencias</h3>
-<div id="refs" class="references">
-<div id="ref-noauthor_expresion_2021">
-<p>“Expresión Regular.” 2021. <em>Wikipedia, La Enciclopedia Libre</em>. <a href="https://es.wikipedia.org/w/index.php?title=Expresi%C3%B3n_regular&amp;oldid=139047843">https://es.wikipedia.org/w/index.php?title=Expresi%C3%B3n_regular&amp;oldid=139047843</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-noauthor_expresion_2021" class="csl-entry">
+<span>“Expresión Regular.”</span> 2021. <em>Wikipedia, La Enciclopedia Libre</em>. <a href="https://es.wikipedia.org/wiki/Expresi%C3%B3n_regular">https://es.wikipedia.org/wiki/Expresi%C3%B3n_regular</a>.
 </div>
 </div>
             </section>
